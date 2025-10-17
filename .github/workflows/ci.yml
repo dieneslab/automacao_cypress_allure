@@ -22,24 +22,23 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Adicionar esta etapa para garantir que o Allure Commandline esteja no PATH
-      - name: Set up Allure Commandline
-        run: sudo npm install -g allure-commandline --prefix /usr/local
-
-      - name: Run Cypress Tests 🧪
+      - name: Run Cypress Tests & Generate Allure Report
         uses: cypress-io/github-action@v6
         with:
+          runTests: true
           command: npm run test
-        continue-on-error: true  
+          install: false
+          allure: true 
+        continue-on-error: true
+
+      - name: Generate Allure History
+        run: |
+          if [ -d "allure-report/history" ]; then
+            cp -r allure-report/history allure-results/
+          fi
 
       - name: Generate Allure report
         run: npm run allure:generate
-
-      - name: Upload Allure report as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-report
-          path: allure-report
 
       - name: Deploy Allure report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

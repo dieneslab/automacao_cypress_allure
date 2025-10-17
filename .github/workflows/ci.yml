@@ -56,8 +56,3 @@ jobs:
           publish_dir: ./allure-report
           enable_jekyll: true
           keep_files: true
-
-      # 8️⃣ Log opcional do status do job
-      - name: Cypress exit code
-        if: always()
-        run: echo "Cypress step status: ${{ steps.cypress.outcome }}"

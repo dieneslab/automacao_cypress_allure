@@ -22,20 +22,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Cypress Tests & Generate Allure Report
+      - name: Set up Allure Commandline
+        run: sudo npm install -g allure-commandline --prefix /usr/local
+
+      - name: Run Cypress Tests 🧪
         uses: cypress-io/github-action@v6
         with:
-          runTests: true
           command: npm run test
-          install: false
-          allure: true 
-        continue-on-error: true
-
-      - name: Generate Allure History
-        run: |
-          if [ -d "allure-report/history" ]; then
-            cp -r allure-report/history allure-results/
-          fi
+        continue-on-error: true  
 
       - name: Generate Allure report
         run: npm run allure:generate

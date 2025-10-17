@@ -11,33 +11,53 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
+      # 1️⃣ Pega o código
       - name: Checkout
         uses: actions/checkout@v4
 
+      # 2️⃣ Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
 
+      # 3️⃣ Instala dependências
       - name: Install dependencies
         run: npm ci
 
+      # 4️⃣ Instala Allure CLI globalmente
       - name: Set up Allure Commandline
         run: sudo npm install -g allure-commandline --prefix /usr/local
 
+      # 5️⃣ Roda os testes Cypress sem quebrar o job
       - name: Run Cypress Tests 🧪
+        id: cypress
         uses: cypress-io/github-action@v6
         with:
           command: npm run test
-        continue-on-error: true  
+        continue-on-error: true
 
+      # 6️⃣ Gera relatório Allure mesmo se os testes falharam
       - name: Generate Allure report
-        run: npm run allure:generate
+        if: always()
+        run: |
+          if [ -d "allure-results" ]; then
+            npm run allure:generate || echo "⚠️ Erro ao gerar relatório Allure"
+          else
+            echo "⚠️ Diretório allure-results não encontrado!"
+          fi
 
+      # 7️⃣ Publica relatório no GitHub Pages
       - name: Deploy Allure report to GitHub Pages
+        if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./allure-report
           enable_jekyll: true
           keep_files: true
+
+      # 8️⃣ Log opcional do status do job
+      - name: Cypress exit code
+        if: always()
+        run: echo "Cypress step status: ${{ steps.cypress.outcome }}"

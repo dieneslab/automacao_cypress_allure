@@ -11,31 +11,26 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      # 1️⃣ Pega o código
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 2️⃣ Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      # 3️⃣ Instala dependências
       - name: Install dependencies
         run: npm ci
 
-      # 4️⃣ Roda os testes Cypress (não quebra o job se houver falhas)
       - name: Run Cypress Tests 🧪
         uses: cypress-io/github-action@v6
         with:
-          command: npm run test || exit 0
+          command: npm run test
+        continue-on-error: true  
 
-      # 5️⃣ Gera relatório Allure
       - name: Generate Allure report
         run: npm run allure:generate
 
-      # 6️⃣ Publica relatório no GitHub Pages
       - name: Deploy Allure report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:

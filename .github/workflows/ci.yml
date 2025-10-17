@@ -22,11 +22,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Cypress Tests 🧪
-        uses: cypress-io/github-action@v6
-        with:
-          command: npm run test
-        continue-on-error: true  
+      - name: Run Cypress Tests
+        run: npm run test || true
 
       - name: Generate Allure report
         run: npm run allure:generate

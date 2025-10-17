@@ -13,7 +13,7 @@ Este projeto contém testes Cypress com integração ao Allure para geração de
 1. Clone o repositório:
 ```bash
 git clone https://github.com/dieneslab/automacao_cypress_allure.git
-cd <seu-repositorio>
+cd automacao_cypress_allure
 ```
 
 2. Instale as dependências:
@@ -29,7 +29,7 @@ npm run cy:open
 
 4. Execute os testes em modo headless:
 ```bash
-npm run cy
+npm run test
 ```
 
 5. Gere o relatório Allure:

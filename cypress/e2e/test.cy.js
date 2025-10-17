@@ -1,6 +1,10 @@
-describe('Demo Allure Test', () => {
-  it('should visit the example page', () => {
+describe('Test Cypress page', () => {
+  it('Should visit the example page', () => {
     cy.visit('/');
-    cy.title().should('include', 'Kitchen Sink');
-  });
-});
+    cy.title().should('include', 'Kitchen Sink')
+  })
+    it('Should visit the example page and fail', () => {
+    cy.visit('/');
+    cy.title().should('include', 'Kitchen Sink Test with error')
+  })
+})

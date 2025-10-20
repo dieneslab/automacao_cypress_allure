@@ -31,11 +31,10 @@ jobs:
           path: gh-pages-allure-history
 
       - name: Prepare Allure history directory
-        if: always()
         run: |
-          mkdir -p allure-results # Garante que o diretório allure-results exista
+          mkdir -p allure-results
           if [ -d "gh-pages-allure-history/allure-report/history" ]; then
-            cp -r gh-pages-allure-history/allure-report/history allure-results || true
+            cp -r gh-pages-allure-history/allure-report/history allure-results/
             echo "Allure history copied from gh-pages branch."
           else
             echo "No Allure history found on gh-pages branch. Starting fresh."

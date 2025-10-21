@@ -1,0 +1,7 @@
+"Epic","Feature","Story","FAILED","BROKEN","PASSED","SKIPPED","UNKNOWN"
+"","Search Functionality","","0","0","2","0","0"
+"","Search Functionality","Login with valid credentials","0","0","1","0","0"
+"","Search Functionality","Search for an existing product","0","0","1","0","0"
+"","User Authentication","","0","0","1","0","0"
+"","","","0","0","1","1","0"
+"","Search Functionality","Search for a non-existent product","0","0","1","0","0"

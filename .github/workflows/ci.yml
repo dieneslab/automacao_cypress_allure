@@ -46,7 +46,7 @@ jobs:
       - name: Create Allure executor file
         if: always()
         run: |
-          echo '{ "reportName": "Allure Report #${{ github.run_number }}", "buildOrder": "${{ github.run_number }}", 
+          echo '{ "buildOrder": "${{ github.run_number }}", "reportName": "Allure Report #${{ github.run_number }}",  
           "reportUrl": "https://dieneslab.github.io/automacao_cypress_allure", "name": "GitHub Actions", 
           "type": "github", "buildName": "Build #${{ github.run_number }}", 
           "buildUrl": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" }' > allure-results/executor.json

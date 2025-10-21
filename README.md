@@ -27,12 +27,13 @@ Este projeto foi criado para demonstrar a integração entre o **Cypress** e o *
 ├── 📂 allure_reports      # Relatórios Allure gerados após a execução
 ├── 📂 allure_results      # Resultados Allure gerados após a execução
 ├── 📂 cypress
-│   ├── 📂 e2e             # Testes automatizados (API, Front e Cucumber)
+│   ├── 📂 e2e             # Testes automatizados
 │   ├── 📂 fixtures        # Mocks e dados de teste
 │   ├── 📂 support         # Comandos customizados e configurações globais
 ├── 📜 cypress.config.js   # Configuração principal do Cypress
 ├── 📜 LICENSE             # Licença do projeto
-├── 📜 package.json        # Dependências e scripts
+├── 📜 package-lock.json   # Pacotes e sub-pacotes instalados
+├── 📜 package.json        # Dependências e scripts do projeto
 ├── 📜 README.md           # Documentação do projeto
 ```
 
@@ -107,7 +108,6 @@ A pipeline executa os testes, gera os relatórios e pode publicar os resultados 
 | `npm run test` | Executa todos os testes em modo headless |
 | `npm run allure:generate` | Gera o relatório Allure baseado nos resultados |
 | `npm run allure:open` | Abre o relatório Allure no navegador |
-| `npm run clean:allure` | Remove relatórios antigos do diretório `allure-results` |
 
 ---
 

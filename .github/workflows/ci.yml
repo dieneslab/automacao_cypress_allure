@@ -43,6 +43,13 @@ jobs:
       - name: Run Cypress Tests
         run: npm run test || true
 
+      - name: Create Allure executor file
+        if: always()
+        run: |
+          echo '{ "name": "GitHub Actions", "type": "github", "buildName": "Build #${{ github.run_number }}", 
+          "buildUrl": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}", 
+          "reportUrl": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" }' > allure-results/executor.json
+
       - name: Generate Allure report
         run: npm run allure:generate
 

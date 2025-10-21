@@ -22,42 +22,29 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Checkout gh-pages branch for Allure history
+      - name: Run Cypress Tests
+        run: npm run test || true
+
+      - name: Load test report history
         uses: actions/checkout@v4
         if: always()
         continue-on-error: true
         with:
           ref: gh-pages
-          path: gh-pages-allure-history
+          path: gh-pages
 
-      - name: Prepare Allure history directory
-        run: |
-          mkdir -p allure-results
-          if [ -d "gh-pages-allure-history/allure-report/history" ]; then
-            cp -r gh-pages-allure-history/allure-report/history allure-results/
-            echo "Allure history copied from gh-pages branch."
-          else
-            echo "No Allure history found on gh-pages branch. Starting fresh."
-          fi
-
-      - name: Run Cypress Tests
-        run: npm run test || true
-
-      - name: Create Allure executor file
+      - name: Build Allure report with history
+        uses: simple-elf/allure-report-action@v1.7
         if: always()
-        run: |
-          echo '{ "buildOrder": "${{ github.run_number }}", "reportName": "Allure Report #${{ github.run_number }}",  
-          "reportUrl": "https://dieneslab.github.io/automacao_cypress_allure", "name": "GitHub Actions", 
-          "type": "github", "buildName": "Build #${{ github.run_number }}", 
-          "buildUrl": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" }' > allure-results/executor.json
-         
-      - name: Generate Allure report
-        run: npm run allure:generate
+        with:
+          gh_pages: gh-pages
+          allure_history: allure-history
+          allure_results: allure-results
 
       - name: Deploy Allure report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
+        if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./allure-report
-          enable_jekyll: true
-          keep_files: true
+          publish_branch: gh-pages
+          publish_dir: allure-history

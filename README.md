@@ -76,7 +76,7 @@ npm run cy:open
 
 4. **Execute os testes no modo headless**
 ```bash
-npm run test
+npm run cy:test
 ```
 
 5. **Gere o relatório Allure**

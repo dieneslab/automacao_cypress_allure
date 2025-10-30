@@ -2,9 +2,9 @@ name: Cypress Tests w/ Allure Reporting
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, develop ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, develop ]
 
 jobs:
   cypress-tests:
@@ -24,6 +24,8 @@ jobs:
 
       - name: Run Cypress Tests
         run: npm run test || true
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
       - name: Load test report history
         uses: actions/checkout@v4

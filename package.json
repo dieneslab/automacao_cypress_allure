@@ -1,7 +1,8 @@
 {
   "scripts": {
     "cy:open": "cypress open",
-    "test": "cypress run",
+    "cy:test": "cypress run",
+    "test": "cypress run --record",
     "allure:generate": "allure generate allure-results -o allure-report",
     "allure:open": "allure open allure-report"
   }, 

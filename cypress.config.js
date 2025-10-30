@@ -1,6 +1,5 @@
 const { defineConfig } = require("cypress")
 const allureWriter = require("@shelex/cypress-allure-plugin/writer")
-require('dotenv').config()
 
 module.exports = defineConfig({
   projectId: "otmmhz",

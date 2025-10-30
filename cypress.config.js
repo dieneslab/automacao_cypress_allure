@@ -7,6 +7,10 @@ module.exports = defineConfig({
     baseUrl: "https://example.cypress.io",
     setupNodeEvents(on, config) {
       allureWriter(on, config)
+      config.env = {
+        ...config.env,
+        recordKey: process.env.CYPRESS_RECORD_KEY,
+      }
       return config;
     },
     experimentalPromptCommand: true

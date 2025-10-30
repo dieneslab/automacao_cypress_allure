@@ -24,6 +24,8 @@ jobs:
 
       - name: Run Cypress Tests
         run: npm run test || true
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
       - name: Load test report history
         uses: actions/checkout@v4

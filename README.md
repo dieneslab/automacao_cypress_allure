@@ -30,7 +30,6 @@ Este projeto foi criado para demonstrar a integração entre o **Cypress** e o *
 │   ├── 📂 e2e             # Testes automatizados
 │   ├── 📂 fixtures        # Mocks e dados de teste
 │   ├── 📂 support         # Comandos customizados e configurações globais
-├── 📜 .env                # Variáveis de ambiente
 ├── 📜 cypress.config.js   # Configuração principal do Cypress
 ├── 📜 LICENSE             # Licença do projeto
 ├── 📜 package-lock.json   # Pacotes e sub-pacotes instalados
@@ -70,30 +69,22 @@ npm install cypress --save-dev
 npm install -D @shelex/cypress-allure-plugin allure-commandline
 ```
 
-3. **Configurar Variáveis de Ambiente**
-
-Crie um arquivo `.env` na raiz do projeto:
-
-```env
-CYPRESS_RECORD_KEY=99999999-98ab-1234-abcd-12ab34cd56ef
-```
-
-4. **Abra o Cypress (modo interativo)**
+3. **Abra o Cypress (modo interativo)**
 ```bash
 npm run cy:open
 ```
 
-5. **Execute os testes no modo headless**
+4. **Execute os testes no modo headless**
 ```bash
 npm run cy:test
 ```
 
-6. **Gere o relatório Allure**
+5. **Gere o relatório Allure**
 ```bash
 npm run allure:generate
 ```
 
-7. **Abra o relatório no navegador**
+6. **Abra o relatório no navegador**
 ```bash
 npm run allure:open
 ```

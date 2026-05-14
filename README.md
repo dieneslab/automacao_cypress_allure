@@ -132,3 +132,4 @@ Este projeto está sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) par
 ---
 
 Desenvolvido com 💻 por [**Dienes Stein**](https://github.com/dieneslab) ✨
+ 
